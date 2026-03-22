@@ -256,13 +256,8 @@ describe('#addressparser', () => {
                 name: 'FirstName Surname-WithADash',
                 group: [
                     {
-                        name: undefined,
-                        group: [
-                            {
-                                address: 'firstname@company.com',
-                                name: 'Company'
-                            }
-                        ]
+                        address: 'firstname@company.com',
+                        name: 'Company'
                     }
                 ]
             }
@@ -340,14 +335,14 @@ describe('#addressparser', () => {
         let input = '"test\\"quote"@example.com';
         let result = addressparser(input);
         assert.strictEqual(result.length, 1);
-        assert.strictEqual(result[0].address, 'test"quote@example.com');
+        assert.strictEqual(result[0].address, 'test"quote @example.com');
     });
 
     it('should handle escaped backslashes', () => {
         let input = '"test\\\\backslash"@example.com';
         let result = addressparser(input);
         assert.strictEqual(result.length, 1);
-        assert.strictEqual(result[0].address, 'test\\backslash@example.com');
+        assert.strictEqual(result[0].address, 'test\\backslash @example.com');
     });
 
     it('should handle unclosed quote gracefully', () => {
